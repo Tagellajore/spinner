@@ -1,11 +1,18 @@
-const symbols = ['\r|  ', '\r/  ', '\r-  ', '\r\\  ']
+const spinnerChars = ['|', '/', '-', '\\','|'];
+const rotations = 2;
 
-symbols.forEach(function(symbol, index) {
-  setTimeout(function() {
-    process.stdout.write(symbol);
-  }, (index + 1) * 200);
-})
+let delay = 100;
+
+for(let rotation = 0; rotation < rotations; rotation++) {
+  for (const char of spinnerChars) {
+    delay = delay + 300;
+    setTimeout(() => {
+     process.stdout.write(`\r${char}   `);
+    }, delay)
+  }
+}
+
 
 setTimeout(() => {
-  console.log('')
-}, 1000)
+  process.stdout.write(`\n`);
+}, delay)
